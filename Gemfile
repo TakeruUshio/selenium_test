@@ -15,5 +15,3 @@ group :test, :development do
   gem 'pry-doc'
 end
 
-gem 'capistrano'
-
