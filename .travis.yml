@@ -1,0 +1,10 @@
+language: ruby
+
+sudo: false
+
+cache:
+  bundler: true
+
+script:
+  - bundle exec rspec spec/features/*.feature
+
