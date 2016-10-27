@@ -6,7 +6,7 @@ group :test do
   gem 'turnip'
   gem 'poltergeist'
   gem 'representable', '2.3.0'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '< 3.0.0'
   gem 'capybara'
 end
 
