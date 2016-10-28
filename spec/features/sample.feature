@@ -4,7 +4,7 @@
 機能: サンプル
  シナリオ: サンプル
    もし   Seleniumでブラウザを使用する
-   もし   'http://google.com' にアクセスし 'yasoon' を検索する
-   ならば 'もしかして: yaraon' と表示されること
+   もし   'https://travis-ci.org' にアクセスする
+   ならば 'Sign Up' ボタンが表示されていること
    かつ   Seleniumのブラウザを閉じる
 
