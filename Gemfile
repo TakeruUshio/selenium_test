@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rspec', '3.3.0'
+gem 'test-queue'
 
 group :test do
   gem 'turnip'
