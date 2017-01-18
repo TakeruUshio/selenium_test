@@ -8,6 +8,9 @@ rvm:
 cache:
   bundler: true
 
+addons:
+  firefox: "50.1.0"
+
 before_script:
   # https://docs.travis-ci.com/user/gui-and-headless-browsers/
   - "export DISPLAY=:99.0"
