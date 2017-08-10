@@ -6,7 +6,7 @@ step "Seleniumでブラウザを使用する" do
 end
 
 step "Seleniumのブラウザを閉じる" do
-  @driver.quit()
+  @driver.close
 end
 
 step ":url にアクセスする" do |url|
