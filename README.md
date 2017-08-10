@@ -8,7 +8,7 @@ bundle exec rspec spec/features/*.feature
 
 ## GeckoDriver install
 
-[Down load geckodriver](https://github.com/mozilla/geckodriver/releases)
+[Download geckodriver](https://github.com/mozilla/geckodriver/releases)
 
 for mac command
 
