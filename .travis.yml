@@ -12,5 +12,6 @@ addons:
   firefox: "47.0.2"
 
 script:
+  # ref: https://jenkins.magellanic-clouds.com/job/TakeruUshio/job/selenium_test/
   - xvfb-run bundle exec rspec spec/features/*.feature
 
