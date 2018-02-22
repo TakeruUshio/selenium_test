@@ -6,7 +6,7 @@ step "Seleniumでブラウザを使用する" do
 end
 
 step "Seleniumのブラウザを閉じる" do
-  @driver.quit()
+  @driver.close
 end
 
 step ":url にアクセスする" do |url|
@@ -14,7 +14,7 @@ step ":url にアクセスする" do |url|
 end
 
 step ":button ボタンが表示されていること" do |button|
-	button_list = @driver.all(:tag_name, "button")
-	expect(button_list.any?{|b| b.text == button}).to be_truthy
+  button_list = @driver.all(:tag_name, "button")
+  expect(button_list.any?{|b| b.text == button}).to be_truthy
 end
 
