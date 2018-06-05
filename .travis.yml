@@ -3,13 +3,13 @@ language: ruby
 sudo: false
 
 rvm:
-  - 2.4.3
+  - 2.5.1
 
 cache:
   bundler: true
 
 addons:
-  firefox: "47.0.2"
+  firefox: "60.0.1"
 
 script:
   # ref: https://jenkins.magellanic-clouds.com/job/TakeruUshio/job/selenium_test/
