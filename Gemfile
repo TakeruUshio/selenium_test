@@ -9,6 +9,7 @@ group :test do
   gem 'representable', '2.3.0'
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'turnip_formatter'
 end
 
 group :test, :development do
