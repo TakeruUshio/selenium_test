@@ -1,1 +1,3 @@
 -r turnip/rspec
+-f d
+--profile
