@@ -1,6 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (5.2.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     byebug (10.0.2)
@@ -15,12 +20,16 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
     coderay (1.1.2)
+    concurrent-ruby (1.0.5)
     diff-lcs (1.3)
     ffi (1.9.25)
     gherkin (5.1.0)
+    i18n (1.0.1)
+      concurrent-ruby (~> 1.0)
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
+    minitest (5.11.3)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     poltergeist (1.18.1)
@@ -60,9 +69,16 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     test-queue (0.2.13)
+    thread_safe (0.3.6)
     turnip (3.1.0)
       gherkin (~> 5.0)
       rspec (>= 3.0, < 4.0)
+    turnip_formatter (0.7.1)
+      activesupport (>= 4.2.7, < 6.0)
+      rspec (>= 3.3, < 4.0)
+      turnip (~> 3.1.0)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
     uber (0.0.15)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
@@ -84,6 +100,7 @@ DEPENDENCIES
   selenium-webdriver
   test-queue (< 0.3.0)
   turnip
+  turnip_formatter
 
 BUNDLED WITH
    1.16.1

@@ -33,6 +33,8 @@ pipeline {
           set -xe
           xvfb-run bundle exec rspec spec/features/*.feature
         '''
+        // Save tmp/turnip_formatter/report.html as artifact
+        archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report.html"
         // Cleanup workspace
         cleanWs()
       }
