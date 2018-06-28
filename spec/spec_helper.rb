@@ -7,5 +7,4 @@ require 'capybara/poltergeist'
 require 'turnip'
 require 'turnip/capybara'
 require 'selenium-webdriver'
-require "test_queue"
 
