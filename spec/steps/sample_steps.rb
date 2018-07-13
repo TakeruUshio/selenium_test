@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 step "Seleniumでブラウザを使用する" do
-  @driver = Selenium::WebDriver.for :firefox
+  options = Selenium::WebDriver::Firefox::Options.new
+  options.add_argument '--headless' if use_headless?
+  @driver = Selenium::WebDriver.for :firefox, options: options
   @driver.manage.timeouts.implicit_wait = 30
 end
 
