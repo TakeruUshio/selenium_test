@@ -17,6 +17,10 @@ def rspec_queue?
   defined?(::TestQueue::Runner::RSpec)
 end
 
+def use_headless?
+  ENV['USE_HEADLESS'] =~ /\A(1|on|true|yes)\z/i
+end
+
 RSpec.configure do |config|
   if !rspec_queue? && use_turnip_formatter?
     config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
