@@ -10,3 +10,9 @@ parallel execution:
 bundle exec ./exec/rspec-queue.rb spec/featureas/*.feature
 ```
 
+Headless execution:
+
+```shell
+export USE_HEADLESS=true
+bundle exec rspec spec/features/*.feature
+```
