@@ -19,7 +19,11 @@ before_install:
   - export PATH=${PWD}/tmp/geckodriver:$PATH
   - geckodriver --version
 
+env:
+  global:
+    - USE_HEADLESS=true
+
 script:
   # ref: https://jenkins.magellanic-clouds.com/job/TakeruUshio/job/selenium_test/
-  - xvfb-run bundle exec rspec spec/features/*.feature
+  - bundle exec rspec spec/features/*.feature
 
