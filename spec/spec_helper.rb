@@ -8,6 +8,11 @@ require 'turnip'
 require 'turnip/capybara'
 require 'selenium-webdriver'
 require 'turnip_formatter'
+require 'pry'
+require 'pathname'
+
+$LOAD_PATH.unshift "#{__dir__}/../lib"
+require 'monkey_patches/turnip_ext'
 
 def use_turnip_formatter?
   ENV['DISABLE_TURNIP_FORMATTER'] !~ /\A(1|on|true|yes)\z/i
