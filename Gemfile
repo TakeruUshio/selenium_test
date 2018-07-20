@@ -10,6 +10,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'turnip_formatter'
+  gem 'activesupport'
 end
 
 group :test, :development do
