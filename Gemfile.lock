@@ -65,7 +65,7 @@ GEM
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     rubyzip (1.2.1)
-    selenium-webdriver (3.12.0)
+    selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     test-queue (0.2.13)
