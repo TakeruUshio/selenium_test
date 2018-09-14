@@ -13,44 +13,55 @@ end
 module MonkeyPatches
   module TurnipExt
     module StepCallWithLogger
-      class StepCounter
-        def initialize
-          @current_depth = 0
-          @count = Hash.new(0)
+      class StepGraph
+        attr_reader :parent, :children
+
+        def initialize(name, parent: nil)
+          @name = name
+          @parent = parent
+          @children = []
+          @parent.children.push self if @parent
         end
 
-        def count(&block)
-          @current_depth += 1
-          @count[@current_depth] += 1
-          step_count = @count.sort_by{|k,v| k}.select{|k,v| k <= @current_depth }.map{|k,v| v }.join("-")
-          begin
-            block.call step_count
-          ensure
-            @count.delete(@current_depth+1) if @count.has_key?(@current_depth+1)
-            @current_depth -= 1
+        def ancestors
+          if @parent
+            [@parent, *@parent.ancestors]
+          else
+            []
+          end
+        end
+
+        def index
+          if @parent
+            @parent.children.index(self)
+          else
+            nil
           end
         end
       end
 
       def step_with_hook(step_or_description, *extra_args)
-        @logger ||= defined?(logger) ? logger : Logger.new($stdout).tap{|o| o.level = :debug }
-        @counter ||= StepCounter.new
+        @logger ||= defined?(logger) ? logger : Logger.new($stdout, level: :debug)
+        @current ||= StepGraph.new('root')
 
         step_name = step_or_description.respond_to?(:description) ? step_or_description.description : step_or_description
-        t1 = Time.now
 
-        @counter.count do |step_count|
+        parent, @current = @current, StepGraph.new(step_name, parent: @current)
+        step_count = [@current, *@current.ancestors].map(&:index).compact.map{|i| i+1 }.reverse.join("-")
+
+        begin
           @logger.debug "[#{step_count}] Starting step #{step_name}"
-          begin
-            r = step_without_hook(step_or_description, *extra_args)
-            t2 = Time.now
-            @logger.info "[#{step_count}] Finished step #{step_name} (#{"%.3f" % [t2-t1]} sec)"
-            r
-          rescue StandardError, ::RSpec::Expectations::ExpectationNotMetError => e
-            t2 = Time.now
-            @logger.error "[#{step_count}] Failed step #{step_name} (#{"%.3f" % [t2-t1]} sec)"
-            raise e
-          end
+          t1 = Time.now
+          r = step_without_hook(step_or_description, *extra_args)
+          t2 = Time.now
+          @logger.info "[#{step_count}] Finished step #{step_name} (#{"%.3f" % [t2-t1]} sec)"
+          r
+        rescue StandardError, ::RSpec::Expectations::ExpectationNotMetError => e
+          t2 = Time.now
+          @logger.error "[#{step_count}] Failed step #{step_name} (#{"%.3f" % [t2-t1]} sec)"
+          raise e
+        ensure
+          @current = parent
         end
       end
 
