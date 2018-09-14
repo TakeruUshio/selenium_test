@@ -1,1 +1,2 @@
 require_relative 'turnip_ext/shorten_example_description'
+require_relative 'turnip_ext/step_call_with_logger'
