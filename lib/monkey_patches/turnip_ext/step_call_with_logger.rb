@@ -48,17 +48,22 @@ module MonkeyPatches
 
         parent, @current = @current, StepGraph.new(step_name, parent: @current)
         step_count = [@current, *@current.ancestors].map(&:index).compact.map{|i| i+1 }.reverse.join("-")
+        log_level_map = {
+          started:  @current.parent.parent ? :debug : :debug,
+          failed:   @current.parent.parent ? :warn  : :error,
+          finished: @current.parent.parent ? :debug : :info,
+        }
 
         begin
-          @logger.debug "[#{step_count}] Starting step #{step_name}"
+          @logger.send(log_level_map[:started], "[#{step_count}] Starting step #{step_name}")
           t1 = Time.now
           r = step_without_hook(step_or_description, *extra_args)
           t2 = Time.now
-          @logger.info "[#{step_count}] Finished step #{step_name} (#{"%.3f" % [t2-t1]} sec)"
+          @logger.send(log_level_map[:finished], "[#{step_count}] Finished step #{step_name} (#{"%.3f" % [t2-t1]} sec)")
           r
         rescue StandardError, ::RSpec::Expectations::ExpectationNotMetError => e
           t2 = Time.now
-          @logger.error "[#{step_count}] Failed step #{step_name} (#{"%.3f" % [t2-t1]} sec)"
+          @logger.send(log_level_map[:failed], "[#{step_count}] Failed step #{step_name} (#{"%.3f" % [t2-t1]} sec)")
           raise e
         ensure
           @current = parent
