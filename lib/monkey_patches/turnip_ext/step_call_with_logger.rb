@@ -63,7 +63,7 @@ module MonkeyPatches
           r
         rescue StandardError, ::RSpec::Expectations::ExpectationNotMetError => e
           t2 = Time.now
-          @logger.send(log_level_map[:failed], "[#{step_count}] Failed step #{step_name} (#{"%.3f" % [t2-t1]} sec)")
+          @logger.send(log_level_map[:failed], "[#{step_count}] Failed step #{step_name} (#{"%.3f" % [t2-t1]} sec, exception: #{e.class})")
           raise e
         ensure
           @current = parent
