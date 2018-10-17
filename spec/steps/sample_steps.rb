@@ -9,6 +9,7 @@ end
 
 step ":use_browser でブラウザを起動する" do |use_browser|
   options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument '--headless' if use_headless?
   @driver = Selenium::WebDriver.for use_browser.to_sym, options: options
   @driver.manage.timeouts.implicit_wait = 30
 end
