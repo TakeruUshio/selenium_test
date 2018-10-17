@@ -7,6 +7,12 @@ step "Seleniumでブラウザを使用する" do
   @driver.manage.timeouts.implicit_wait = 30
 end
 
+step ":use_browser でブラウザを起動する" do |use_browser|
+  options = Selenium::WebDriver::Chrome::Options.new
+  @driver = Selenium::WebDriver.for use_browser.to_sym, options: options
+  @driver.manage.timeouts.implicit_wait = 30
+end
+
 step "Seleniumのブラウザを閉じる" do
   @driver.close
 end
