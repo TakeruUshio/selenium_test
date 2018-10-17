@@ -3,7 +3,7 @@
 step ":use_browser でブラウザを起動する" do |use_browser|
   case use_browser
   when "firefox"
-    options = Selenium::WebDriver::Chrome::Options.new
+    options = Selenium::WebDriver::Firefox::Options.new
   when "chrome"
     options = Selenium::WebDriver::Chrome::Options.new
   end
