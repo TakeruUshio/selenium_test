@@ -10,9 +10,14 @@ require 'selenium-webdriver'
 require 'turnip_formatter'
 require 'pry'
 require 'pathname'
+require 'logger'
 
 $LOAD_PATH.unshift "#{__dir__}/../lib"
 require 'monkey_patches/turnip_ext'
+
+def logger
+  @logger ||= Logger.new($stdout, level: :info)
+end
 
 def use_turnip_formatter?
   ENV['DISABLE_TURNIP_FORMATTER'] !~ /\A(1|on|true|yes)\z/i
