@@ -10,6 +10,7 @@ cache:
 
 addons:
   firefox: "60.0.2"
+  chrome: stable
 
 before_install:
   # Install geckodriver from https://github.com/mozilla/geckodriver/releases
