@@ -29,6 +29,9 @@ pipeline {
         // check firefox, geckodriver version
         sh "bash -lc 'firefox --version'"
         sh "bash -lc 'geckodriver --version'"
+        // check google-chrome, chromedriver version
+        sh "bash -lc 'google-chrome --version'"
+        sh "bash -lc 'chromedriver --version'"
         // Run test
         sh '''#!/bin/bash -l
           set -xe
