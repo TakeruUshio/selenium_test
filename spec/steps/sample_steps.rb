@@ -22,10 +22,6 @@ step ":url にアクセスする" do |url|
   @driver.navigate.to url
 end
 
-step "テストを失敗させる" do
-  expect(false).to be_truthy
-end
-
 # 以下expect系のstep
 step ":button ボタンが表示されていること" do |button|
   button_list = @driver.all(:tag_name, "button")
