@@ -6,6 +6,8 @@ step ":use_browser でブラウザを起動する" do |use_browser|
     options = Selenium::WebDriver::Firefox::Options.new
   when "chrome"
     options = Selenium::WebDriver::Chrome::Options.new
+    # https://docs.travis-ci.com/user/chrome#sandboxing
+    options.add_argument '--no-sandbox' if travis?   
   end
   options.add_argument '--headless' if use_headless?
   @driver = Selenium::WebDriver.for use_browser.to_sym, options: options
