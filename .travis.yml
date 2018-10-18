@@ -11,6 +11,7 @@ cache:
 addons:
   # https://docs.travis-ci.com/user/firefox
   firefox: latest
+  # https://docs.travis-ci.com/user/chrome
   chrome: stable
 
 before_install:
