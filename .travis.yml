@@ -19,6 +19,12 @@ before_install:
   - tar xf geckodriver-linux64.tar.gz -C tmp/geckodriver
   - export PATH=${PWD}/tmp/geckodriver:$PATH
   - geckodriver --version
+  # Install chromedriver from http://chromedriver.chromium.org/downloads
+  - mkdir -p tmp/chromedriver
+  - curl -f -L -o chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip
+  - unzip -d tmp/chromedriver chromedriver_linux64.zip
+  - export PATH=${PWD}/tmp/chromedriver:$PATH
+  - chromedriver --version
 
 env:
   global:
