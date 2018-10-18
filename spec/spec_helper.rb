@@ -39,5 +39,12 @@ RSpec.configure do |config|
   if !rspec_queue? && use_turnip_formatter?
     config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
   end
+
+  config.after do |scenario|
+    if @driver.browser == :chrome && !scenario.exception.nil?
+      console_log = @driver.manage.logs.get(:browser)
+      console_log.each{|log| logger.info("Chrome Console Log [#{log.level}] : #{log.message}")} if console_log.nil?
+    end
+  end
 end
 
