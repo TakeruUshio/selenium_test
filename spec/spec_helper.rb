@@ -42,8 +42,11 @@ RSpec.configure do |config|
 
   config.after do |scenario|
     if @driver.browser == :chrome 
+      begin
       console_log = @driver.manage.logs.get(:browser)
       console_log.each{|log| logger.info("Chrome Console Log [#{log.level}] : #{log.message}")} if console_log
+      rescue => e
+      end
     end
   end
 end
