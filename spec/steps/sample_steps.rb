@@ -25,6 +25,6 @@ end
 # 以下expect系のstep
 step ":button ボタンが表示されていること" do |button|
   button_list = @driver.all(:tag_name, "button")
-  expect(button_list.any?{|b| b.text == button}).to be_truthy
+  expect(button_list.map(&:text)).to include button
 end
 
