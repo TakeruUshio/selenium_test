@@ -52,6 +52,10 @@ RSpec.configure do |config|
     end
   end
 
+  config.before do |scenario|
+    @last_run_status = scenario.metadata[:last_run_status]
+  end
+
   config.after do |scenario|
     if @driver&.browser == :chrome
       begin
