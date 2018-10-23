@@ -38,7 +38,7 @@ pipeline {
           bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
         '''
         // Save tmp/turnip_formatter/report.html as artifact
-        archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report.html"
+        archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
       }
       post {
         always {

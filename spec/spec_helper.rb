@@ -40,7 +40,12 @@ RSpec.configure do |config|
   config.example_status_persistence_file_path = 'tmp/example_status.txt'
 
   if !rspec_queue? && use_turnip_formatter?
-    config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
+    # with --only-failures option
+    if config.filter_manager.inclusions.rules[:last_run_status] == "failed"
+      config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report_retry.html'
+    else
+      config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
+    end
   end
 
   config.before do |scenario|
