@@ -40,8 +40,17 @@ RSpec.configure do |config|
     config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
   end
 
+  config.before do |scenario|
+    browser_tags = [:firefox, :chrome]
+    if browser_tags.all?{|k| scenario.metadata[k]}
+      raise "Multiple browser tags are not allowed"
+    else
+      @browser = browser_tags.find{|k| scenario.metadata[k]}
+    end
+  end
+
   config.after do |scenario|
-    if @driver.browser == :chrome 
+    if @driver&.browser == :chrome 
       begin
         console_log = @driver.manage.logs.get(:browser)
         console_log.each{|log| logger.info("Chrome Console Log [#{log.level}] : #{log.message}")} if console_log

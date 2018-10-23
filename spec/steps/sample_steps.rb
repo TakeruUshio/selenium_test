@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 
-step ":use_browser でブラウザを起動する" do |use_browser|
-  case use_browser
-  when "firefox"
+step "ブラウザを起動する" do
+  case @browser
+  when :firefox
     options = Selenium::WebDriver::Firefox::Options.new
-  when "chrome"
+  when :chrome
     options = Selenium::WebDriver::Chrome::Options.new
     # https://docs.travis-ci.com/user/chrome#sandboxing
     options.add_argument '--no-sandbox' if travis?   
+  else
+    raise "Browser is not selected"
   end
   options.add_argument '--headless' if use_headless?
-  @driver = Selenium::WebDriver.for use_browser.to_sym, options: options
+  @driver = Selenium::WebDriver.for @browser, options: options
   @driver.manage.timeouts.implicit_wait = 30
 end
 
