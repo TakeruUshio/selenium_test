@@ -36,6 +36,9 @@ def travis?
 end
 
 RSpec.configure do |config|
+  # https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
+  config.example_status_persistence_file_path = 'tmp/example_status.txt'
+
   if !rspec_queue? && use_turnip_formatter?
     config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
   end
