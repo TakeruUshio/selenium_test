@@ -42,7 +42,7 @@ RSpec.configure do |config|
 
   config.before do |scenario|
     browser_tags = [:firefox, :chrome]
-    if browser_tags.all?{|k| scenario.metadata[k]}
+    if browser_tags.select{|k| scenario.metadata[k] }.count > 1
       raise "Multiple browser tags are not allowed"
     else
       @browser = browser_tags.find{|k| scenario.metadata[k]}
