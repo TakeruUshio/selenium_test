@@ -7,7 +7,7 @@ step "ブラウザを起動する" do
   when :chrome
     options = Selenium::WebDriver::Chrome::Options.new
     # https://docs.travis-ci.com/user/chrome#sandboxing
-    options.add_argument '--no-sandbox' if travis?   
+    options.add_argument '--no-sandbox' if travis?
   else
     raise "Browser is not selected"
   end
