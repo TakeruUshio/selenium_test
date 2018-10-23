@@ -16,6 +16,10 @@ step "ブラウザを起動する" do
   @driver.manage.timeouts.implicit_wait = 30
 end
 
+step "起動したブラウザが :browser であること" do |browser|
+  expect(@driver.browser).to eq browser.to_sym
+end
+
 step "Seleniumのブラウザを閉じる" do
   @driver.close
 end
