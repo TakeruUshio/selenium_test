@@ -11,7 +11,7 @@
     かつ   Seleniumのブラウザを閉じる
 
   @chrome
-  シナリオ: サンプル
+  シナリオ: use browser chrome
     もし   ブラウザを起動する
     ならば 起動したブラウザが chrome であること
     もし   'https://travis-ci.org' にアクセスする
