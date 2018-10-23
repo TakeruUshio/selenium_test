@@ -3,7 +3,7 @@
 
 機能: サンプル
   @firefox
-  シナリオ: サンプル
+  シナリオ: use browser firefox
     もし   ブラウザを起動する
     ならば 起動したブラウザが firefox であること
     もし   'https://travis-ci.org' にアクセスする
