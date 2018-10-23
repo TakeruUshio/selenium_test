@@ -39,8 +39,12 @@ pipeline {
         '''
         // Save tmp/turnip_formatter/report.html as artifact
         archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report.html"
-        // Cleanup workspace
-        cleanWs()
+      }
+      post {
+        always {
+          // Cleanup workspace after build
+          cleanWs()
+        }
       }
     }
   }
