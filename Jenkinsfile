@@ -35,7 +35,7 @@ pipeline {
         // Run test
         sh '''#!/bin/bash -l
           set -xe
-          bundle exec rspec spec/features/*.feature
+          bundle exec rspec spec/features/
         '''
         // Save tmp/turnip_formatter/report.html as artifact
         archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report.html"

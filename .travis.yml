@@ -38,5 +38,5 @@ env:
 
 script:
   # ref: https://jenkins.magellanic-clouds.com/job/TakeruUshio/job/selenium_test/
-  - bundle exec rspec spec/features/*.feature
+  - bundle exec rspec spec/features/
 
