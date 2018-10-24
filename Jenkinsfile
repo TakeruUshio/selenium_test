@@ -35,12 +35,22 @@ pipeline {
         // Run test
         sh '''#!/bin/bash -l
           set -xe
-          bundle exec rspec spec/features/*.feature
+          bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
         '''
-        // Save tmp/turnip_formatter/report.html as artifact
-        archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report.html"
-        // Cleanup workspace
-        cleanWs()
+        // Run test with test-queue
+        sh '''#!/bin/bash -l
+          set -xe
+          rm tmp/example_status.txt
+          bundle exec exec/rspec-queue.rb spec/features/ || bundle exec exec/rspec-queue.rb spec/features/ --only-failures
+        '''
+      }
+      post {
+        always {
+          // Save tmp/turnip_formatter/report.html as artifact
+          archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
+          // Cleanup workspace after build
+          cleanWs()
+        }
       }
     }
   }

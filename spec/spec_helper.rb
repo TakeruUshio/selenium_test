@@ -36,8 +36,16 @@ def travis?
 end
 
 RSpec.configure do |config|
+  # https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
+  config.example_status_persistence_file_path = 'tmp/example_status.txt'
+
   if !rspec_queue? && use_turnip_formatter?
-    config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
+    if config.filter_manager.inclusions.rules[:last_run_status] == "failed"
+      # with --only-failures option
+      config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report_retry.html'
+    else
+      config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
+    end
   end
 
   config.before do |scenario|
@@ -47,6 +55,10 @@ RSpec.configure do |config|
     else
       @browser = browser_tags.find{|k| scenario.metadata[k]}
     end
+  end
+
+  config.before do |scenario|
+    @last_run_status = scenario.metadata[:last_run_status]
   end
 
   config.after do |scenario|

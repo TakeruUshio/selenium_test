@@ -28,6 +28,10 @@ step ":url にアクセスする" do |url|
   @driver.navigate.to url
 end
 
+step "前回のこのシナリオの結果が :result である" do |result|
+  expect(@last_run_status).to eq result
+end
+
 # 以下expect系のstep
 step ":button ボタンが表示されていること" do |button|
   button_list = @driver.all(:tag_name, "button")
