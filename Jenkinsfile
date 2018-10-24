@@ -37,11 +37,11 @@ pipeline {
           set -xe
           bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
         '''
-        // Save tmp/turnip_formatter/report.html as artifact
-        archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
       }
       post {
         always {
+          // Save tmp/turnip_formatter/report.html as artifact
+          archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
           // Cleanup workspace after build
           cleanWs()
         }
