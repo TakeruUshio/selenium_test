@@ -35,6 +35,8 @@ before_install:
 env:
   global:
     - USE_HEADLESS=true
+    # about test-queue (exec/rspec-queue.rb) environment variable, see https://github.com/tmm1/test-queue#environment-variables
+    - TEST_QUEUE_WORKERS=4
 
 script:
   # ref: https://jenkins.magellanic-clouds.com/job/TakeruUshio/job/selenium_test/
