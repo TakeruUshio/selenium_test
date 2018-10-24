@@ -12,6 +12,18 @@ class MyAppTestRunner < TestQueue::Runner::RSpec
       end
     end
   end
+
+  # override run_worker method to call `persist_example_statuses`
+  # ref:
+  # - https://github.com/tmm1/test-queue/blob/v0.2.13/lib/test_queue/runner/rspec.rb#L21-L23
+  # - https://github.com/rspec/rspec-core/blob/v3.8.0/lib/rspec/core/runner.rb#L85-L90
+  def run_worker(iterator)
+    @rspec.run_each(iterator).tap{
+      # `persist_example_statuses` is private method
+      # ref: https://github.com/rspec/rspec-core/blob/v3.8.0/lib/rspec/core/runner.rb#L186-L196
+      @rspec.send(:persist_example_statuses)
+    }.to_i
+  end
 end
 
 MyAppTestRunner.new.execute
