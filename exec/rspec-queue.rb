@@ -8,7 +8,12 @@ class MyAppTestRunner < TestQueue::Runner::RSpec
   def after_fork(num)
     if use_turnip_formatter?
       ::RSpec.configure do |config|
-        config.add_formatter ::RSpecTurnipFormatter, "tmp/turnip_formatter/report-#{num}.html"
+        if config.filter_manager.inclusions.rules[:last_run_status] == "failed"
+          # with --only-failures option
+          config.add_formatter ::RSpecTurnipFormatter, "tmp/turnip_formatter/report_retry-#{num}.html"
+        else
+          config.add_formatter ::RSpecTurnipFormatter, "tmp/turnip_formatter/report-#{num}.html"
+        end
       end
     end
   end
