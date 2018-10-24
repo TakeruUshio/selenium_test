@@ -1,18 +1,24 @@
 # Run test:
 
 ```shell
-bundle exec rspec spec/features/*.feature
+rm -f tmp/example_status.txt
+bundle exec rspec spec/features/
+bundle exec rspec spec/features/ --only-failures
 ```
 
 parallel execution:
 
 ```shell
-bundle exec ./exec/rspec-queue.rb spec/featureas/*.feature
+rm -f tmp/example_status.txt
+bundle exec ./exec/rspec-queue.rb spec/featureas/
+bundle exec ./exec/rspec-queue.rb spec/featureas/ --only-failures
 ```
 
 Headless execution:
 
 ```shell
 export USE_HEADLESS=true
-bundle exec rspec spec/features/*.feature
+rm -f tmp/example_status.txt
+bundle exec rspec spec/features/
+bundle exec rspec spec/features/ --only-failures
 ```
