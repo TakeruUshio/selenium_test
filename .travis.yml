@@ -39,4 +39,6 @@ env:
 script:
   # ref: https://jenkins.magellanic-clouds.com/job/TakeruUshio/job/selenium_test/
   - bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
+  - rm tmp/example_status.txt
+  - bundle exec exec/rspec-queue.rb spec/features/ || bundle exec exec/rspec-queue.rb spec/features/ --only-failures
 
