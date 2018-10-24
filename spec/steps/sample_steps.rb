@@ -28,7 +28,7 @@ step ":url にアクセスする" do |url|
   @driver.navigate.to url
 end
 
-step "前回のビルド結果が :result である" do |result|
+step "前回のこのシナリオの結果が :result である" do |result|
   expect(@last_run_status).to eq result
 end
 
