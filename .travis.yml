@@ -1,9 +1,10 @@
+# https://docs.travis-ci.com/user/reference/overview/
+dist: xenial
+
 language: ruby
 
-sudo: false
-
 rvm:
-  - 2.6.0
+  - 2.6
 
 cache:
   bundler: true
@@ -15,19 +16,22 @@ addons:
   chrome: stable
 
 before_install:
+  # Install bundler 2 (https://docs.travis-ci.com/user/languages/ruby/#bundler)
+  - gem update --system
+  - gem install bundler
   # check firefox version
   - firefox --version
   # check chrome version
   - google-chrome --version
   # Install geckodriver from https://github.com/mozilla/geckodriver/releases
   - mkdir -p tmp/geckodriver
-  - curl -f -L -o geckodriver-linux64.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+  - curl -f -L -o geckodriver-linux64.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
   - tar xf geckodriver-linux64.tar.gz -C tmp/geckodriver
   - export PATH=${PWD}/tmp/geckodriver:$PATH
   - geckodriver --version
   # Install chromedriver from http://chromedriver.chromium.org/downloads
   - mkdir -p tmp/chromedriver
-  - curl -f -L -o chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip
+  - curl -f -L -o chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip
   - unzip -d tmp/chromedriver chromedriver_linux64.zip
   - export PATH=${PWD}/tmp/chromedriver:$PATH
   - chromedriver --version

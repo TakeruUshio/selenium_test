@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('test'){
       environment {
-        RBENV_VERSION = '2.6.0'
+        RBENV_VERSION = '2.6'
         USE_HEADLESS = 'true'
       }
       steps {
