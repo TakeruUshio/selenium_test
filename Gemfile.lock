@@ -74,7 +74,6 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
-    test-queue (0.2.13)
     thread_safe (0.3.6)
     turnip (3.1.0)
       gherkin (~> 5.0)
@@ -105,9 +104,8 @@ DEPENDENCIES
   representable (= 3.0.4)
   rspec (= 3.8.0)
   selenium-webdriver
-  test-queue (< 0.3.0)
   turnip
   turnip_formatter
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
