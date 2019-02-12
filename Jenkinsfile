@@ -37,12 +37,6 @@ pipeline {
           set -xe
           bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
         '''
-        // Run test with test-queue
-        sh '''#!/bin/bash -l
-          set -xe
-          rm tmp/example_status.txt
-          bundle exec exec/rspec-queue.rb spec/features/ || bundle exec exec/rspec-queue.rb spec/features/ --only-failures
-        '''
       }
       post {
         always {
