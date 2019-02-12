@@ -23,10 +23,6 @@ def use_turnip_formatter?
   ENV['DISABLE_TURNIP_FORMATTER'] !~ /\A(1|on|true|yes)\z/i
 end
 
-def rspec_queue?
-  defined?(::TestQueue::Runner::RSpec)
-end
-
 def use_headless?
   ENV['USE_HEADLESS'] =~ /\A(1|on|true|yes)\z/i
 end
@@ -39,7 +35,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
   config.example_status_persistence_file_path = 'tmp/example_status.txt'
 
-  if !rspec_queue? && use_turnip_formatter?
+  if use_turnip_formatter?
     if config.filter_manager.inclusions.rules[:last_run_status] == "failed"
       # with --only-failures option
       config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report_retry.html'
