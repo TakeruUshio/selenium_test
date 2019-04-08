@@ -15,6 +15,5 @@ end
 group :test, :development do
   gem 'pry-byebug'
   gem 'pry-doc'
-  gem 'google/cloud'
 end
 
