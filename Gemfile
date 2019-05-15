@@ -6,7 +6,7 @@ group :test do
   gem 'turnip'
   gem 'poltergeist'
   gem 'representable', '3.0.4'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '4.0.0alpha2'
   gem 'capybara'
   gem 'turnip_formatter'
   gem 'activesupport'
