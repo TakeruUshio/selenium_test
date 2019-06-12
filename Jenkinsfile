@@ -21,9 +21,8 @@ pipeline {
         // bundle install
         sh '''#!/bin/bash -l
           set -xe
-          bundle check || bundle install --jobs=4 --path=/opt/bundler/TakeruUshi__selenium_test --deployment
+          bundle install --jobs=4 --path=vendor/bundle --deployment
           bundle config
-          [ "$GIT_BRANCH" = "master" ] && bundle clean
           bundle show --paths
         '''
         // check firefox, geckodriver version
@@ -42,6 +41,8 @@ pipeline {
         always {
           // Save tmp/turnip_formatter/report.html as artifact
           archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
+        }
+        cleanup {
           // Cleanup workspace after build
           cleanWs()
         }
