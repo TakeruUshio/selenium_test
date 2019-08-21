@@ -38,3 +38,9 @@ step ":button ボタンが表示されていること" do |button|
   expect(button_list.map(&:text)).to include button
 end
 
+# ScreenShotを撮る
+step "現在のページのスクリーンショットを撮る" do
+  FileUtils.mkdir_p "tmp/images"
+  @driver.save_screenshot("tmp/images/screenshot-%s.png" % [ Time.now.strftime("%Y%m%d-%H%M%S") ])
+end
+
