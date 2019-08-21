@@ -103,7 +103,7 @@ DEPENDENCIES
   pry-doc
   representable (= 3.0.4)
   rspec (= 3.8.0)
-  selenium-webdriver (= 4.0.0alpha2)
+  selenium-webdriver (= 4.0.0alpha3)
   turnip
   turnip_formatter
 
