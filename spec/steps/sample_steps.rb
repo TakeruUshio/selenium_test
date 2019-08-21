@@ -44,3 +44,7 @@ step "現在のページのスクリーンショットを撮る" do
   @driver.save_screenshot("tmp/images/screenshot-%s.png" % [ Time.now.strftime("%Y%m%d-%H%M%S") ])
 end
 
+step ":num 秒待機する" do |num|
+  sleep num.to_f
+end
+
