@@ -31,6 +31,21 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
   config.example_status_persistence_file_path = 'tmp/example_status.txt'
 
+  config.before do |scenario|
+    selenium_ver = ENV["BUNDLER_ORIG_BUNDLE_GEMFILE"]
+
+    if selenium_ver.include?("selenium_3")
+      s_sym = :selenium3
+    else
+      s_sym = :selenium4
+    end
+    metadata = scenario.metadata
+    binding.pry
+    if metadata[:selenium3] || metadata[:selenium4]
+      skip unless metadata[s_sym]
+    end
+  end
+
   if use_turnip_formatter?
     if config.filter_manager.inclusions.rules[:last_run_status] == "failed"
       # with --only-failures option
