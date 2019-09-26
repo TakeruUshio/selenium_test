@@ -39,8 +39,8 @@ RSpec.configure do |config|
     else
       s_sym = :selenium4
     end
+
     metadata = scenario.metadata
-    binding.pry
     if metadata[:selenium3] || metadata[:selenium4]
       skip unless metadata[s_sym]
     end
