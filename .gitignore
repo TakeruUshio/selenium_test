@@ -1,3 +1,5 @@
 /.bundle
 /vendor/bundle
 /tmp
+/gemfiles/.bundle/
+/gemfiles/vendor/
