@@ -22,6 +22,8 @@ pipeline {
         sh '''#!/bin/bash -l
           set -xe
           bundle install --jobs=4 --path=vendor/bundle --deployment
+		  BUNDLE_GEMFILE=gemfiles/selenium_3.gemfile bundle install --jobs=4 --path vendor/bundle --deployment
+		  BUNDLE_GEMFILE=gemfiles/selenium_4.gemfile bundle install --jobs=4 --path vendor/bundle --deployment
           bundle config
           bundle show --paths
         '''
