@@ -7,7 +7,7 @@ group :test do
   gem 'representable', '3.0.4'
   gem 'selenium-webdriver'
   gem 'turnip_formatter'
-  gem 'activesupport', '< 6.0.0'
+  gem 'activesupport'
 end
 
 group :test, :development do
