@@ -35,8 +35,10 @@ pipeline {
         sh '''#!/bin/bash -l
           set -xe
           bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
-          BUNDLE_GEMFILE=gemfiles/selenium_3.gemfile bundle exec rspec spec/features/sample_use_selenium3_or_seleninum4.feature
-          BUNDLE_GEMFILE=gemfiles/selenium_4.gemfile bundle exec rspec spec/features/sample_use_selenium3_or_seleninum4.feature
+          export BUNDLE_GEMFILE=gemfiles/selenium_3.gemfile
+		  bundle exec rspec spec/features/sample_use_selenium3_or_seleninum4.feature
+          export BUNDLE_GEMFILE=gemfiles/selenium_4.gemfile
+		  bundle exec rspec spec/features/sample_use_selenium3_or_seleninum4.feature
         '''
       }
       post {
