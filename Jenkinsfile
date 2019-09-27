@@ -13,32 +13,7 @@ pipeline {
             USE_HEADLESS = 'true'
           }
           steps {
-            // Show environment
-            sh '''#!/bin/bash -l
-              set -xe
-              export -p
-              rbenv versions
-              gem env
-              bundle --version
-            '''
-            // bundle install
-            sh '''#!/bin/bash -l
-              set -xe
-              bundle install --jobs=4 --path=vendor/bundle --deployment
-              bundle config
-              bundle show --paths
-            '''
-            // check firefox, geckodriver version
-            sh "bash -lc 'firefox --version'"
-            sh "bash -lc 'geckodriver --version'"
-            // check google-chrome, chromedriver version
-            sh "bash -lc 'google-chrome --version'"
-            sh "bash -lc 'chromedriver --version'"
-            // Run test
-            sh '''#!/bin/bash -l
-              set -xe
-              bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
-            '''
+            runTest()
           }
           post {
             always {
@@ -59,32 +34,7 @@ pipeline {
             BUNDLE_GEMFILE = 'gemfiles/selenium_3.gemfile'
           }
           steps {
-            // Show environment
-            sh '''#!/bin/bash -l
-              set -xe
-              export -p
-              rbenv versions
-              gem env
-              bundle --version
-            '''
-            // bundle install
-            sh '''#!/bin/bash -l
-              set -xe
-              bundle install --jobs=4 --path=vendor/bundle --deployment
-              bundle config
-              bundle show --paths
-            '''
-            // check firefox, geckodriver version
-            sh "bash -lc 'firefox --version'"
-            sh "bash -lc 'geckodriver --version'"
-            // check google-chrome, chromedriver version
-            sh "bash -lc 'google-chrome --version'"
-            sh "bash -lc 'chromedriver --version'"
-            // Run test
-            sh '''#!/bin/bash -l
-              set -xe
-              bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
-            '''
+            runTest()
           }
           post {
             always {
@@ -105,32 +55,7 @@ pipeline {
             BUNDLE_GEMFILE = 'gemfiles/selenium_4.gemfile'
           }
           steps {
-            // Show environment
-            sh '''#!/bin/bash -l
-              set -xe
-              export -p
-              rbenv versions
-              gem env
-              bundle --version
-            '''
-            // bundle install
-            sh '''#!/bin/bash -l
-              set -xe
-              bundle install --jobs=4 --path=vendor/bundle --deployment
-              bundle config
-              bundle show --paths
-            '''
-            // check firefox, geckodriver version
-            sh "bash -lc 'firefox --version'"
-            sh "bash -lc 'geckodriver --version'"
-            // check google-chrome, chromedriver version
-            sh "bash -lc 'google-chrome --version'"
-            sh "bash -lc 'chromedriver --version'"
-            // Run test
-            sh '''#!/bin/bash -l
-              set -xe
-              bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
-            '''
+            runTest()
           }
           post {
             always {
@@ -146,6 +71,39 @@ pipeline {
       }
     }
   }
+}
+
+def runTest(){
+  // Show environment
+  sh '''#!/bin/bash -l
+    set -xe
+    export -p
+    rbenv versions
+    gem env
+    bundle --version
+  '''
+
+  // bundle install
+  sh '''#!/bin/bash -l
+    set -xe
+    bundle install --jobs=4 --path=vendor/bundle --deployment
+    bundle config
+    bundle show --paths
+  '''
+
+  // check firefox, geckodriver version
+  sh "bash -lc 'firefox --version'"
+  sh "bash -lc 'geckodriver --version'"
+
+  // check google-chrome, chromedriver version
+  sh "bash -lc 'google-chrome --version'"
+  sh "bash -lc 'chromedriver --version'"
+
+  // Run test
+  sh '''#!/bin/bash -l
+    set -xe
+    bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
+  '''
 }
 
 /* vim:set ft=groovy: */
