@@ -6,6 +6,11 @@ language: ruby
 rvm:
   - 2.6
 
+gemfile:
+  - Gemfile
+  - gemfiles/selenium_3.gemfile
+  - gemfiles/selenium_4.gemfile
+
 cache:
   bundler: true
 
