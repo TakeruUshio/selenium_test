@@ -27,6 +27,18 @@ def travis?
   ENV['TRAVIS'] == "true"
 end
 
+def jenkins?
+  ENV.has_key?('JENKINS_URL')
+end
+
+def turnip_formatter_output_filename(is_retry: false)
+  d = 'tmp/turnip_formatter'
+  f = 'report.html'
+  f = File.basename(f, '.*') + "_#{ENV['STAGE_NAME']}" + File.extname(f) if jenkins?
+  f = File.basename(f, '.*') + '_retry' + File.extname(f) if is_retry
+  File.join(d, f)
+end
+
 RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
   config.example_status_persistence_file_path = 'tmp/example_status.txt'
@@ -48,12 +60,7 @@ RSpec.configure do |config|
   end
 
   if use_turnip_formatter?
-    if config.filter_manager.inclusions.rules[:last_run_status] == "failed"
-      # with --only-failures option
-      config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report_retry.html'
-    else
-      config.add_formatter ::RSpecTurnipFormatter, 'tmp/turnip_formatter/report.html'
-    end
+    config.add_formatter ::RSpecTurnipFormatter, turnip_formatter_output_filename(is_retry: config.filter_manager.inclusions.rules[:last_run_status] == "failed")
   end
 
   config.before do |scenario|
