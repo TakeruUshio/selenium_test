@@ -19,7 +19,7 @@ pipeline {
           }
           post {
             always {
-              // Save tmp/turnip_formatter/report.html as artifact
+              // Save tmp/turnip_formatter/report*.html as artifact
               archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
             }
             cleanup {
@@ -38,7 +38,7 @@ pipeline {
           }
           post {
             always {
-              // Save tmp/turnip_formatter/report.html as artifact
+              // Save tmp/turnip_formatter/report*.html as artifact
               archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
             }
             cleanup {
@@ -57,7 +57,7 @@ pipeline {
           }
           post {
             always {
-              // Save tmp/turnip_formatter/report.html as artifact
+              // Save tmp/turnip_formatter/report*.html as artifact
               archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
             }
             cleanup {
