@@ -3,15 +3,17 @@ pipeline {
   options {
     disableConcurrentBuilds()
   }
+  environment {
+    RBENV_VERSION = '2.6'
+    USE_HEADLESS = 'true'
+  }
   stages {
     stage('test'){
       parallel {
         stage('root') {
           agent { label 'functest' }
-          environment {
-            RBENV_VERSION = '2.6'
-            USE_HEADLESS = 'true'
-          }
+          // environment {
+          // }
           steps {
             runTest()
           }
@@ -29,8 +31,6 @@ pipeline {
         stage('selenium3') {
           agent { label 'functest' }
           environment {
-            RBENV_VERSION = '2.6'
-            USE_HEADLESS = 'true'
             BUNDLE_GEMFILE = 'gemfiles/selenium_3.gemfile'
           }
           steps {
@@ -50,8 +50,6 @@ pipeline {
         stage('selenium4') {
           agent { label 'functest' }
           environment {
-            RBENV_VERSION = '2.6'
-            USE_HEADLESS = 'true'
             BUNDLE_GEMFILE = 'gemfiles/selenium_4.gemfile'
           }
           steps {
