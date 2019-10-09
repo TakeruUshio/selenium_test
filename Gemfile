@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rspec', '3.8.0'
+gem 'rspec', '3.9.0'
 
 group :test do
   gem 'turnip'
