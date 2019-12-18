@@ -22,8 +22,8 @@ addons:
 
 before_install:
   # Install bundler 2 (https://docs.travis-ci.com/user/languages/ruby/#bundler)
-  - yes y | gem update --force --system
-  - gem install bundler
+  - gem i rubygems-update -v '<3' && update_rubygems
+  - gem install bundler -v 1.17.3
   # check firefox version
   - firefox --version
   # check chrome version
