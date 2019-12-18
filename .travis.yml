@@ -22,8 +22,8 @@ addons:
 
 before_install:
   # Install bundler 2 (https://docs.travis-ci.com/user/languages/ruby/#bundler)
-  - gem update --system
-  - gem install bundler
+  - gem i rubygems-update -v '<3' && update_rubygems
+  - gem install bundler -v 1.17.3
   # check firefox version
   - firefox --version
   # check chrome version
@@ -36,7 +36,7 @@ before_install:
   - geckodriver --version
   # Install chromedriver from http://chromedriver.chromium.org/downloads
   - mkdir -p tmp/chromedriver
-  - curl -f -L -o chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip
+  - curl -f -L -o chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip
   - unzip -d tmp/chromedriver chromedriver_linux64.zip
   - export PATH=${PWD}/tmp/chromedriver:$PATH
   - chromedriver --version
