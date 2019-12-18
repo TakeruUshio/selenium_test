@@ -22,7 +22,7 @@ addons:
 
 before_install:
   # Install bundler 2 (https://docs.travis-ci.com/user/languages/ruby/#bundler)
-  - gem update --force --system
+  - yes y | gem update --force --system
   - gem install bundler
   # check firefox version
   - firefox --version
