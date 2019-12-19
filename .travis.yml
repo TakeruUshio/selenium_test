@@ -21,7 +21,7 @@ addons:
   chrome: stable
 
 before_install:
-  - gem update --system
+  - gem i rubygems-update -v '<3' && update_rubygems
   - gem install bundler
   # check firefox version
   - firefox --version
