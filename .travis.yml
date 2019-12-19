@@ -21,9 +21,8 @@ addons:
   chrome: stable
 
 before_install:
-  # Install bundler 2 (https://docs.travis-ci.com/user/languages/ruby/#bundler)
   - gem i rubygems-update -v '<3' && update_rubygems
-  - gem install bundler -v 1.17.3
+  - gem install bundler
   # check firefox version
   - firefox --version
   # check chrome version
