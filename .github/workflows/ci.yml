@@ -91,7 +91,7 @@ jobs:
             :
           else
             mkdir -p tmp
-            curl -sSfL -o tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip
+            curl -sSfL -o tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/78.0.3904.105/chromedriver_linux64.zip
             unzip -x tmp/chromedriver_linux64.zip -d tmp
             sudo install -m 755 -o root -g root -p tmp/chromedriver /usr/local/bin/chromedriver
             chromedriver --version
