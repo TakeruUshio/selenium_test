@@ -12,10 +12,6 @@ gemfile:
   - gemfiles/selenium_3.gemfile
   - gemfiles/selenium_4.gemfile
 
-jobs:
-  allow_failures:
-    - rvm: 2.7
-
 cache:
   bundler: true
 
