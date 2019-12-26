@@ -28,16 +28,24 @@ before_install:
   - firefox --version
   # check chrome version
   - google-chrome --version
+
   # Install geckodriver from https://github.com/mozilla/geckodriver/releases
   - mkdir -p tmp/geckodriver
-  - curl -f -L -o geckodriver-linux64.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
-  - tar xf geckodriver-linux64.tar.gz -C tmp/geckodriver
+  - |
+    LATEST_JSON=$(curl --fail --retry 3 https://api.github.com/repos/mozilla/geckodriver/releases/latest)
+    GECKODRIVER_ASSET_URL=$(echo "$LATEST_JSON" | jq -r '.assets[].browser_download_url | select(contains("linux64"))')
+    curl --silent --show-error --location --fail --retry 3 --output geckodriver.tar.gz ${GECKODRIVER_ASSET_URL}
+  - tar xf geckodriver.tar.gz -C tmp/geckodriver
   - export PATH=${PWD}/tmp/geckodriver:$PATH
   - geckodriver --version
+
   # Install chromedriver from http://chromedriver.chromium.org/downloads
   - mkdir -p tmp/chromedriver
-  - curl -f -L -o chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/79.0.3945.36/chromedriver_linux64.zip
-  - unzip -d tmp/chromedriver chromedriver_linux64.zip
+  - |
+    CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1)
+    CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+    curl --silent --show-error --location --fail --retry 3 --output chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip
+  - unzip -x chromedriver_linux64.zip -d tmp/chromedriver
   - export PATH=${PWD}/tmp/chromedriver:$PATH
   - chromedriver --version
 
