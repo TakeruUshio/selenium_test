@@ -5,11 +5,16 @@ language: ruby
 
 rvm:
   - 2.6
+  - 2.7
 
 gemfile:
   - Gemfile
   - gemfiles/selenium_3.gemfile
   - gemfiles/selenium_4.gemfile
+
+jobs:
+  allow_failures:
+    - rvm: 2.7
 
 cache:
   bundler: true
