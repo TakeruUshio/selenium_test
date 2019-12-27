@@ -4,65 +4,36 @@ pipeline {
     disableConcurrentBuilds()
   }
   environment {
-    RBENV_VERSION = '2.6'
     USE_HEADLESS = 'true'
   }
   stages {
-    stage('test'){
-      parallel {
-        stage('root') {
-          agent { label 'functest' }
-          // environment {
-          // }
-          steps {
-            runTest()
+    stage('test matrix') {
+      matrix {
+        axes {
+          axis {
+            name 'RBENV_VERSION'
+            values '2.6', '2.7'
           }
-          post {
-            always {
-              // Save tmp/turnip_formatter/report*.html as artifact
-              archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
-            }
-            cleanup {
-              // Cleanup workspace after build
-              cleanWs()
-            }
+          axis {
+            name 'BUNDLE_GEMFILE'
+            values '', 'gemfiles/selenium_3.gemfile', 'gemfiles/selenium_4.gemfile'
           }
         }
-        stage('selenium3') {
-          agent { label 'functest' }
-          environment {
-            BUNDLE_GEMFILE = 'gemfiles/selenium_3.gemfile'
-          }
-          steps {
-            runTest()
-          }
-          post {
-            always {
-              // Save tmp/turnip_formatter/report*.html as artifact
-              archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
+        stages {
+          stage('test') {
+            agent { label 'functest' }
+            steps {
+              runTest()
             }
-            cleanup {
-              // Cleanup workspace after build
-              cleanWs()
-            }
-          }
-        }
-        stage('selenium4') {
-          agent { label 'functest' }
-          environment {
-            BUNDLE_GEMFILE = 'gemfiles/selenium_4.gemfile'
-          }
-          steps {
-            runTest()
-          }
-          post {
-            always {
-              // Save tmp/turnip_formatter/report*.html as artifact
-              archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
-            }
-            cleanup {
-              // Cleanup workspace after build
-              cleanWs()
+            post {
+              always {
+                // Save tmp/turnip_formatter/report*.html as artifact
+                archiveArtifacts allowEmptyArchive: true, artifacts: "tmp/turnip_formatter/report*.html"
+              }
+              cleanup {
+                // Cleanup workspace after build
+                cleanWs()
+              }
             }
           }
         }
