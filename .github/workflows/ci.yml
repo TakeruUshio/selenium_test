@@ -1,0 +1,121 @@
+#
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions
+#
+
+name: CI
+
+on: [push]
+
+jobs:
+  dump:
+    name: Dump env vars, contexts
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - name: Environment Variables
+        run: export -p
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+
+  test:
+    name: Test
+    strategy:
+      matrix:
+        ruby_version:
+          - 2.6.5
+          - 2.7.0
+        gemfile:
+          - Gemfile
+          - gemfiles/selenium_3.gemfile
+          - gemfiles/selenium_4.gemfile
+      fail-fast: false
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: ~/local/rubies
+          key: ruby-${{ matrix.ruby_version }}
+      - uses: clupprich/ruby-build-action@master
+        id: ruby
+        with:
+          ruby-version: ${{ matrix.ruby_version }}
+          cache-available: ${{ steps.cache.outputs.cache-hit == 'true' }}
+      - name: Check ruby version and gems
+        run: |
+          set -x
+          ruby --version
+          gem env
+          gem list
+      - name: Install latest bundler
+        run: |
+          set -x
+          gem install bundler
+          gem list -e bundler
+          bundle --version
+      - name: Check firefox and install geckodriver
+        run: |
+          set -x
+          firefox --version
+          if geckodriver --version 2>/dev/null; then
+            :
+          else
+            mkdir -p tmp
+            LATEST_JSON=$(curl --fail --retry 3 -H "Authorization: ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/mozilla/geckodriver/releases/latest)
+            GECKODRIVER_ASSET_URL=$(echo "$LATEST_JSON" | jq -r '.assets[].browser_download_url | select(contains("linux64"))')
+            curl --silent --show-error --location --fail --retry 3 --output tmp/geckodriver.tar.gz ${GECKODRIVER_ASSET_URL}
+            tar xf tmp/geckodriver.tar.gz -C tmp
+            sudo install -m 755 -o root -g root -p tmp/geckodriver /usr/local/bin/geckodriver
+            geckodriver --version
+          fi
+      - name: Check google-chrome and install chromedriver
+        run: |
+          set -x
+          google-chrome --version
+          if chromedriver --version 2>/dev/null; then
+            :
+          else
+            mkdir -p tmp
+            CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1)
+            CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+            curl --silent --show-error --location --fail --retry 3 --output tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip
+            unzip -x tmp/chromedriver_linux64.zip -d tmp
+            sudo install -m 755 -o root -g root -p tmp/chromedriver /usr/local/bin/chromedriver
+            chromedriver --version
+          fi
+      - name: Set Gemfile location
+        run: bundle config gemfile ${{ matrix.gemfile }}
+        if: matrix.gemfile != 'Gemfile'
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - name: Run test
+        run: bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
+        env:
+          USE_HEADLESS: 'true'
+
