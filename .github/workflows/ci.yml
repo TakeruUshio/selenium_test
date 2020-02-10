@@ -55,16 +55,9 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     steps:
       - uses: actions/checkout@master
-      - uses: actions/cache@v1
-        id: cache
-        with:
-          path: ~/local/rubies
-          key: ruby-${{ matrix.ruby_version }}
-      - uses: clupprich/ruby-build-action@master
-        id: ruby
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
-          cache-available: ${{ steps.cache.outputs.cache-hit == 'true' }}
       - name: Check ruby version and gems
         run: |
           set -x
