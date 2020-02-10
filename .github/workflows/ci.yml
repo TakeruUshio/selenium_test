@@ -44,8 +44,8 @@ jobs:
     strategy:
       matrix:
         ruby_version:
-          - 2.6.5
-          - 2.7.0
+          - 2.6
+          - 2.7
         gemfile:
           - Gemfile
           - gemfiles/selenium_3.gemfile
