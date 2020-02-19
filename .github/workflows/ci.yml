@@ -108,7 +108,6 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
       - name: Run test
-        run: bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
+        run: bundle exec parallel_rspec -n 2 --type turnip spec/features/ || bundle exec parallel_rspec -n 2 --type turnip -- --only-failures -- spec/features/
         env:
           USE_HEADLESS: 'true'
-

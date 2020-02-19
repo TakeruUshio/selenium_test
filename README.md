@@ -27,3 +27,9 @@ Run selenium4 feature only `@selenium4` tag scenario:
 BUNDLE_GEMFILE=gemfiles/selenium_4.gemfile bundle exec rspec spec/features/sample_use_selenium3_or_seleninum4.feature
 ```
 
+Run parallel
+
+```shell
+bundle exec parallel_rspec -n 2 --type turnip spec/features/
+```
+
