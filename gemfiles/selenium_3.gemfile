@@ -8,6 +8,8 @@ group :test do
   gem 'selenium-webdriver'
   gem 'turnip_formatter'
   gem 'activesupport'
+  gem 'parallel_tests'
+  gem 'turnip-parallel_tests'
 end
 
 group :test, :development do
