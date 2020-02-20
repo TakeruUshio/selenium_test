@@ -58,10 +58,6 @@ jobs:
       - name: setup matrix_id
         id: setup_matrix_id
         run: echo '::set-output name=MATRIX_ID::'${{ matrix.ruby_version }}-$(basename ${{ matrix.gemfile }})
-      - name: "dump steps"
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
