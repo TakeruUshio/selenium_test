@@ -111,3 +111,9 @@ jobs:
         run: bundle exec parallel_rspec -n 2 --type turnip spec/features/ || bundle exec parallel_rspec -n 2 --type turnip -- --only-failures -- spec/features/
         env:
           USE_HEADLESS: 'true'
+      - name: Save turnip report as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: turnip_formatter
+          path: tmp/turnip_formatter/
+        if: always()
