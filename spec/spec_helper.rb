@@ -34,8 +34,8 @@ end
 def turnip_formatter_output_filename(is_retry: false)
   d = 'tmp/turnip_formatter'
   f = 'report.html'
-  n = ENV['TEST_ENV_NUMBER']
-  unless n.nil?
+
+  if n = ENV['TEST_ENV_NUMBER']
     n = "1" if n.empty?
     f = File.basename(f, '.*') + "_#{n}" + File.extname(f)
   end
