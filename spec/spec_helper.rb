@@ -32,8 +32,9 @@ def jenkins?
 end
 
 def turnip_formatter_output_filename(is_retry: false)
-  d = 'tmp/turnip_formatter'
-  f = 'report.html'
+  out = ENV.fetch('TURNIP_FORMATTER_OUT', 'tmp/turnip_formatter/report.html')
+  d = File.dirname(out)
+  f = File.basename(out)
 
   if n = ENV['TEST_ENV_NUMBER']
     n = "1" if n.empty?
