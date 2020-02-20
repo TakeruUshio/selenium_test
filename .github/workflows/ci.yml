@@ -114,6 +114,6 @@ jobs:
       - name: Save turnip report as artifact
         uses: actions/upload-artifact@v1
         with:
-          name: turnip_formatter
+          name: "turnip_formatter (${{ matrix.ruby_version }}, ${{ matrix.gemfile }})"
           path: tmp/turnip_formatter/
         if: always()
