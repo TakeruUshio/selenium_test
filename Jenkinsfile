@@ -71,7 +71,7 @@ def runTest(){
   // Run test
   sh '''#!/bin/bash -l
     set -xe
-    bundle exec rspec spec/features/ || bundle exec rspec spec/features/ --only-failures
+    bundle exec parallel_rspec -n 2 --type turnip spec/features/ || bundle exec parallel_rspec -n 2 --type turnip -- --only-failures -- spec/features/
   '''
 }
 
