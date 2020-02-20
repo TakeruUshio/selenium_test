@@ -34,6 +34,11 @@ end
 def turnip_formatter_output_filename(is_retry: false)
   d = 'tmp/turnip_formatter'
   f = 'report.html'
+
+  if n = ENV['TEST_ENV_NUMBER']
+    n = "1" if n.empty?
+    f = File.basename(f, '.*') + "_#{n}" + File.extname(f)
+  end
   f = File.basename(f, '.*') + "_#{ENV['STAGE_NAME']}" + File.extname(f) if jenkins?
   f = File.basename(f, '.*') + '_retry' + File.extname(f) if is_retry
   File.join(d, f)
