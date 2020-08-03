@@ -19,8 +19,8 @@ GEM
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
     minitest (5.14.1)
-    parallel (1.19.1)
-    parallel_tests (3.0.0)
+    parallel (1.19.2)
+    parallel_tests (3.1.0)
       parallel
     pry (0.13.0)
       coderay (~> 1.1)
