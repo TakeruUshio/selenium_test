@@ -11,8 +11,7 @@ GEM
     childprocess (3.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.8)
-    declarative (0.0.10)
-    declarative-option (0.1.0)
+    declarative (0.0.20)
     diff-lcs (1.4.4)
     gherkin (5.1.0)
     i18n (1.8.9)
@@ -31,9 +30,9 @@ GEM
     pry-doc (1.1.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
-    representable (3.0.4)
+    representable (3.1.0)
       declarative (< 0.1.0)
-      declarative-option (< 0.2.0)
+      trailblazer-option (~> 0.1.0)
       uber (< 0.2.0)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -52,6 +51,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    trailblazer-option (0.1.0)
     turnip (3.1.0)
       gherkin (~> 5.0)
       rspec (>= 3.0, < 4.0)
@@ -75,7 +75,7 @@ DEPENDENCIES
   parallel_tests
   pry-byebug
   pry-doc
-  representable (= 3.0.4)
+  representable (= 3.1.0)
   rspec (= 3.10.0)
   selenium-webdriver
   turnip
