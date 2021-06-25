@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  reviewers:
+  - TakeruUshio
+  ignore:
+  - dependency-name: test-queue
+    versions:
+    - "> 0.2.13"
+  - dependency-name: parallel_tests
+    versions:
+    - 3.5.1
+  - dependency-name: activesupport
+    versions:
+    - 6.1.2
