@@ -12,7 +12,7 @@ pipeline {
         axes {
           axis {
             name 'RBENV_VERSION'
-            values '2.6', '2.7'
+            values '2.7'
           }
           axis {
             name 'BUNDLE_GEMFILE'
