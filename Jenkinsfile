@@ -12,11 +12,11 @@ pipeline {
         axes {
           axis {
             name 'RBENV_VERSION'
-            values '2.7'
+            values '3.2'
           }
           axis {
             name 'BUNDLE_GEMFILE'
-            values '', 'gemfiles/selenium_3.gemfile', 'gemfiles/selenium_4.gemfile'
+            values ''
           }
         }
         stages {
