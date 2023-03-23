@@ -44,22 +44,6 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
   config.example_status_persistence_file_path = 'tmp/example_status.txt'
 
-  config.before do |scenario|
-    selenium_ver = Selenium::WebDriver::VERSION
-
-    s_sym =  case selenium_ver.split('.')[0]
-             when "3" then :selenium3
-             when "4" then :selenium4
-             else
-               raise "Selenium #{selenium_ver} version is not supported"
-             end
-
-    metadata = scenario.metadata
-    if metadata[:selenium3] || metadata[:selenium4]
-      skip unless metadata[s_sym]
-    end
-  end
-
   if use_turnip_formatter?
     config.add_formatter ::RSpecTurnipFormatter, turnip_formatter_output_filename(is_retry: config.filter_manager.inclusions.rules[:last_run_status] == "failed")
   end
