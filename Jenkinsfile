@@ -12,11 +12,11 @@ pipeline {
         axes {
           axis {
             name 'RBENV_VERSION'
-            values '2.7'
+            values '3.2'
           }
           axis {
             name 'BUNDLE_GEMFILE'
-            values '', 'gemfiles/selenium_3.gemfile', 'gemfiles/selenium_4.gemfile'
+            values ''
           }
         }
         stages {
@@ -71,7 +71,11 @@ def runTest(){
     // bundle install
     sh '''#!/bin/bash -l
       set -xe
-      bundle install --jobs=4 --path=vendor/bundle --deployment
+      bundle config set deployment true --local
+      bundle config set path vendor/bundle --local
+      bundle config set jobs 4 --local
+      bundle config set retry 3 --local
+      bundle install
       bundle config
       bundle show --paths
     '''

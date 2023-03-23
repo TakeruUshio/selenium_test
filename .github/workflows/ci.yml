@@ -44,7 +44,7 @@ jobs:
     strategy:
       matrix:
         ruby_version:
-          - 2.7
+          - 3.2
         gemfile:
           - Gemfile
       fail-fast: false
@@ -105,8 +105,11 @@ jobs:
         if: matrix.gemfile != 'Gemfile'
       - name: Bundle install
         run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundle config set deployment true --local
+          bundle config set path vendor/bundle --local
+          bundle config set jobs 4 --local
+          bundle config set retry 3 --local
+          bundle install
       - name: Run test
         run: bundle exec parallel_rspec -n 2 --type turnip spec/features/ || bundle exec parallel_rspec -n 2 --type turnip -- --only-failures -- spec/features/
         env:
