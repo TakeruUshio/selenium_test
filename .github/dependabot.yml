@@ -17,3 +17,5 @@ updates:
   - dependency-name: activesupport
     versions:
     - 6.1.2
+  - dependency-name: turnip-parallel_tests
+

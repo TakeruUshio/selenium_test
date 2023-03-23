@@ -9,7 +9,7 @@ group :test do
   gem 'turnip_formatter', '~> 0.7'
   gem 'activesupport'
   gem 'parallel_tests'
-  gem 'turnip-parallel_tests'
+  gem 'turnip-parallel_tests', '0.0.1'
 end
 
 group :test, :development do
