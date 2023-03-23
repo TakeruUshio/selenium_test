@@ -7,7 +7,8 @@
     もし   ブラウザを起動する
     ならば 起動したブラウザが firefox であること
     もし   'https://travis-ci.org' にアクセスする
-    かつ   'Sign Up' ボタンが表示されていること
+    かつ   ブラウザのcookieをrejectする
+    ならば 'Start Now' リンクが表示されていること
     かつ   Seleniumのブラウザを閉じる
 
   @chrome
@@ -15,6 +16,6 @@
     もし   ブラウザを起動する
     ならば 起動したブラウザが chrome であること
     もし   'https://travis-ci.org' にアクセスする
-    かつ   'Sign Up' ボタンが表示されていること
+    ならば 'Start Now' リンクが表示されていること
     かつ   Seleniumのブラウザを閉じる
 
