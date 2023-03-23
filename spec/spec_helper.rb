@@ -4,7 +4,6 @@ require 'turnip/rspec'
 require 'turnip'
 require 'selenium-webdriver'
 require 'turnip_formatter'
-require 'pry'
 require 'pathname'
 require 'logger'
 
