@@ -18,7 +18,7 @@ GEM
     method_source (1.0.0)
     minitest (5.18.0)
     parallel (1.22.1)
-    parallel_tests (4.2.0)
+    parallel_tests (0.16.17)
       parallel
     pry (0.14.2)
       coderay (~> 1.1)
@@ -56,8 +56,9 @@ GEM
     turnip (3.1.0)
       gherkin (~> 5.0)
       rspec (>= 3.0, < 4.0)
-    turnip-parallel_tests (0.0.1)
-      parallel_tests
+    turnip-parallel_tests (0.0.2)
+      gherkin
+      parallel_tests (~> 0.16)
     turnip_formatter (0.7.2)
       activesupport (>= 4.2.7, < 7.0)
       rspec (>= 3.3, < 4.0)
