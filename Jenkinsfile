@@ -71,7 +71,11 @@ def runTest(){
     // bundle install
     sh '''#!/bin/bash -l
       set -xe
-      bundle install --jobs=4 --path=vendor/bundle --deployment
+      bundle config set deployment true --local
+      bundle config set path vendor/bundle --local
+      bundle config set jobs 4 --local
+      bundle config set retry 3 --local
+      bundle install
       bundle config
       bundle show --paths
     '''
