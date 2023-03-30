@@ -6,7 +6,7 @@
   シナリオ: use browser firefox
     もし   ブラウザを起動する
     ならば 起動したブラウザが firefox であること
-    もし   'https://travis-ci.org' にアクセスする
+    もし   'https://travis-ci.com' にアクセスする
     かつ   ブラウザのcookieをrejectする
     ならば 'Start Now' リンクが表示されていること
     かつ   Seleniumのブラウザを閉じる
@@ -15,7 +15,7 @@
   シナリオ: use browser chrome
     もし   ブラウザを起動する
     ならば 起動したブラウザが chrome であること
-    もし   'https://travis-ci.org' にアクセスする
+    もし   'https://travis-ci.com' にアクセスする
     ならば 'Start Now' リンクが表示されていること
     かつ   Seleniumのブラウザを閉じる
 
