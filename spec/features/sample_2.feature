@@ -6,7 +6,6 @@
  シナリオ: サンプル
    もし   ブラウザを起動する
    かつ   'https://travis-ci.com' にアクセスする
-   かつ   ブラウザのcookieをrejectする
    ならば 'Start Now' リンクが表示されていること
    かつ   Seleniumのブラウザを閉じる
 
