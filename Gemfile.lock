@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.7.3)
+    activesupport (6.1.7.4)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -13,10 +13,10 @@ GEM
     declarative (0.0.20)
     diff-lcs (1.5.0)
     gherkin (5.1.0)
-    i18n (1.12.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
-    minitest (5.18.0)
+    minitest (5.18.1)
     parallel (1.23.0)
     parallel_tests (4.2.1)
       parallel
@@ -69,7 +69,7 @@ GEM
     websocket (1.2.9)
     yard (0.9.28)
       webrick (~> 1.7.0)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   ruby
