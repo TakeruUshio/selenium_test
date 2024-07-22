@@ -6,7 +6,7 @@ group :test do
   gem 'turnip'
   gem 'representable', '3.2.0'
   gem 'selenium-webdriver'
-  gem 'turnip_formatter', '~> 0.7'
+  gem 'turnip_formatter', '~> 0.8'
   gem 'activesupport'
   gem 'parallel_tests'
   gem 'turnip-parallel_tests', '0.0.1'
