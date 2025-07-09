@@ -1,10 +1,10 @@
-## Turnip::RSpec.run_feature (https://github.com/jnicklas/turnip/blob/v3.1.0/lib/turnip/rspec.rb#L79-L102)
+## Turnip::RSpec.run_feature (https://github.com/jnicklas/turnip/blob/v4.4.1/lib/turnip/rspec.rb)
 ## をモンキーパッチして rspec の example の description を activesupport の String#truncate_words で短くします
 
 require 'turnip/rspec'
 require 'active_support/core_ext/string/filters'
 
-expected_turnip_version = '3.1.0'
+expected_turnip_version = '4.4.1'
 if Turnip::VERSION != expected_turnip_version
   raise "#{__FILE__} は turnip #{expected_turnip_version} 向けに書かれています"
 end

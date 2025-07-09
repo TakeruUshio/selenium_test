@@ -1,11 +1,11 @@
-## Turnip::Execute#step (https://github.com/jnicklas/turnip/blob/v3.1.0/lib/turnip/execute.rb)
+## Turnip::Execute#step (https://github.com/jnicklas/turnip/blob/v4.4.1/lib/turnip/execute.rb)
 ## をラップして step 呼び出しの前後にログ出力します
 
 require 'logger'
 require 'turnip/execute'
 require 'turnip/version'
 
-expected_turnip_version = '3.1.0'
+expected_turnip_version = '4.4.1'
 if Turnip::VERSION != expected_turnip_version
   raise "#{__FILE__} は turnip #{expected_turnip_version} 向けに書かれています"
 end
