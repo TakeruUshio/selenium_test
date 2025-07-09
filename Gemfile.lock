@@ -100,7 +100,7 @@ DEPENDENCIES
   selenium-webdriver
   turnip
   turnip-parallel_tests (= 0.0.1)
-  turnip_formatter (~> 0.7)
+  turnip_formatter (~> 0.8)
 
 BUNDLED WITH
    2.4.6
