@@ -93,9 +93,15 @@ jobs:
             :
           else
             mkdir -p tmp
-            CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1)
-            # Use new Chrome for Testing API
-            CHROMEDRIVER_URL=$(curl --location --fail --retry 3 "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r ".channels.Stable.downloads.chromedriver[] | select(.platform == \"linux64\") | .url")
+            CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1-3)
+            echo "Chrome version: $CHROME_VERSION"
+            # Use new Chrome for Testing API to get matching ChromeDriver version
+            CHROMEDRIVER_URL=$(curl --location --fail --retry 3 "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" | jq -r ".versions[] | select(.version == \"$CHROME_VERSION\") | .downloads.chromedriver[]? | select(.platform == \"linux64\") | .url" | head -1)
+            if [ -z "$CHROMEDRIVER_URL" ]; then
+              echo "No matching ChromeDriver found for Chrome $CHROME_VERSION, using latest stable"
+              CHROMEDRIVER_URL=$(curl --location --fail --retry 3 "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | jq -r ".channels.Stable.downloads.chromedriver[] | select(.platform == \"linux64\") | .url")
+            fi
+            echo "ChromeDriver URL: $CHROMEDRIVER_URL"
             curl --silent --show-error --location --fail --retry 3 --output tmp/chromedriver-linux64.zip "${CHROMEDRIVER_URL}"
             unzip -x tmp/chromedriver-linux64.zip -d tmp
             # The new chromedriver is in a subdirectory

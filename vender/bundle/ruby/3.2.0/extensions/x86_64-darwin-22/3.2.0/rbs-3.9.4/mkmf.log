@@ -1,0 +1,26 @@
+block in append_cflags: checking for whether -std=gnu99 is accepted as CFLAGS... -------------------- yes
+
+DYLD_FALLBACK_LIBRARY_PATH=.:/Users/ta-ushio/.rbenv/versions/3.2.1/lib "clang -o conftest -I/Users/ta-ushio/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-darwin22 -I/Users/ta-ushio/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/Users/ta-ushio/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I./../../include -I/Users/ta-ushio/.rbenv/versions/3.2.1/include  -I/usr/local/opt/gmp/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wundef  -fno-common -pipe conftest.c  -L. -L/Users/ta-ushio/.rbenv/versions/3.2.1/lib -L. -L/Users/ta-ushio/.rbenv/versions/3.2.1/lib  -fstack-protector-strong -L/usr/local/opt/gmp/lib     -lruby.3.2  -lpthread  "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+DYLD_FALLBACK_LIBRARY_PATH=.:/Users/ta-ushio/.rbenv/versions/3.2.1/lib "clang -I/Users/ta-ushio/.rbenv/versions/3.2.1/include/ruby-3.2.0/x86_64-darwin22 -I/Users/ta-ushio/.rbenv/versions/3.2.1/include/ruby-3.2.0/ruby/backward -I/Users/ta-ushio/.rbenv/versions/3.2.1/include/ruby-3.2.0 -I. -I./../../include -I/Users/ta-ushio/.rbenv/versions/3.2.1/include  -I/usr/local/opt/gmp/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wundef  -fno-common -pipe  -std=gnu99 -Werror -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+--------------------
+
