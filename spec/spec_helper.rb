@@ -26,6 +26,10 @@ def jenkins?
   ENV.has_key?('JENKINS_URL')
 end
 
+def travis?
+  ENV.has_key?('TRAVIS')
+end
+
 def turnip_formatter_output_filename(is_retry: false)
   out = ENV.fetch('TURNIP_FORMATTER_OUT', 'tmp/turnip_formatter/report.html')
   d = File.dirname(out)

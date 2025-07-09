@@ -1,0 +1,21 @@
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/erb-5.0.1/ext/erb/escape
+/Users/ta-ushio/.rbenv/versions/3.2.1/bin/ruby extconf.rb
+/Users/ta-ushio/.rbenv/versions/3.2.1/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+creating Makefile
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-yi9wgw sitelibdir\=./.gem.20250704-58676-yi9wgw clean
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-yi9wgw sitelibdir\=./.gem.20250704-58676-yi9wgw
+compiling escape.c
+linking shared-object erb/escape.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-yi9wgw sitelibdir\=./.gem.20250704-58676-yi9wgw install
+/usr/bin/install -c -m 0755 escape.bundle ./.gem.20250704-58676-yi9wgw/erb
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/erb-5.0.1/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-yi9wgw sitelibdir\=./.gem.20250704-58676-yi9wgw clean

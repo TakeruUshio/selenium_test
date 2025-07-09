@@ -1,0 +1,22 @@
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/debug-1.11.0/ext/debug
+/Users/ta-ushio/.rbenv/versions/3.2.1/bin/ruby extconf.rb
+/Users/ta-ushio/.rbenv/versions/3.2.1/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+creating Makefile
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-ew2khw sitelibdir\=./.gem.20250704-58676-ew2khw clean
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-ew2khw sitelibdir\=./.gem.20250704-58676-ew2khw
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-ew2khw sitelibdir\=./.gem.20250704-58676-ew2khw install
+/usr/bin/install -c -m 0755 debug.bundle ./.gem.20250704-58676-ew2khw/debug
+
+current directory: /Users/ta-ushio/work_space/selenium_test/vender/bundle/ruby/3.2.0/gems/debug-1.11.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20250704-58676-ew2khw sitelibdir\=./.gem.20250704-58676-ew2khw clean
